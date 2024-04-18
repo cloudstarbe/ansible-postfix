@@ -33,8 +33,8 @@ postfix_relayhost_port: 587
 postfix_relaytls: false
 
 postfix_sasl_auth_enable: true
-postfix_sasl_user: "postmaster@{{ ansible_domain }}"
-postfix_sasl_password: 'k8+haga4@#pR'
+postfix_sasl_user: ""
+postfix_sasl_password: ""
 postfix_sasl_security_options: noanonymous
 postfix_sasl_tls_security_options: noanonymous
 postfix_sasl_mechanism_filter: ''

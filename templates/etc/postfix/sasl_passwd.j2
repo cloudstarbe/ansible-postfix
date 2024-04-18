@@ -1,7 +1,16 @@
 # {{ ansible_managed }}
 
 {% if postfix_relayhost_mxlookup %}
+{% if postfix_sasl_user | length and postfix_sasl_password | length %}
 {{ postfix_relayhost }}:{{ postfix_relayhost_port }}	{{ postfix_sasl_user }}:{{ postfix_sasl_password }}
+{% endif %}
 {% else %}
+{% if postfix_sasl_user | length and postfix_sasl_password | length %}
 [{{ postfix_relayhost }}]:{{ postfix_relayhost_port }}	{{ postfix_sasl_user }}:{{ postfix_sasl_password }}
+{% endif %}
+{% endif %}
+{% if postfix_sender_dependent_relayhost_maps %}
+{% for relayhost in postfix_sender_dependent_relayhost_maps %}{% if relayhost.sasl_user is defined and relayhost.sasl_password is defined %}
+{{ relayhost.result }}   {{ relayhost.sasl_user }}:{{ relayhost.sasl_password }}
+{% endif %}{% endfor %}
 {% endif %}

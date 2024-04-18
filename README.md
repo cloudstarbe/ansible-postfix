@@ -187,6 +187,8 @@ Conditional relaying:
         result: 'DUNNO'
       - pattern: '*'
         result: "smtp:{{ ansible_lo['ipv4']['address'] }}:1025"
+        sasl_user: 'foo'
+        sasl_password: 'bar'
 ```
 
 Aliases with regexp table (forward all local mail to specified address):
